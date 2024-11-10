@@ -22,17 +22,8 @@ def call(price_history_dict, sellers_data, lowest_price_today_data):
         "name"
     ]
 
-    lowest_price_ever_seller_name = "(unknown seller)"
-    try:
-        lowest_price_ever_seller_name = sellers_data[
-            lowest_price_ever_data["merchant_id"]
-        ]["name"]
-    except Exception:
-        pass
-
     return (
         price_history_data,
         lowest_price_ever_data,
         lowest_price_today_seller_name,
-        lowest_price_ever_seller_name,
     )

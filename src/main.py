@@ -8,6 +8,7 @@ from functions import (
     retrieveSellersData,
     retrievePriceHistoryData,
     getProductInterestInfo,
+    sendInfoExternal,
 )
 
 locale.setlocale(locale.LC_ALL, "pt_BR.UTF-8")
@@ -42,15 +43,30 @@ sellers_data, product_full_name, lowest_price_today_data = retrieveSellersData.c
     price_history_data,
     lowest_price_ever_data,
     lowest_price_today_seller_name,
-    lowest_price_ever_seller_name,
 ) = retrievePriceHistoryData.call(
     price_history_dict, sellers_data, lowest_price_today_data
 )
 
-getProductInterestInfo.call(
+(
+    product_name_shortened,
+    lowest_price_today_formatted,
+    lowest_price_ever_seller_name,
+    lowest_price_ever_formatted,
+    lowest_price_ever_date_formatted,
+) = getProductInterestInfo.call(
+    product_full_name,
     sellers_info_dict,
     sellers_data,
     lowest_price_ever_data,
     lowest_price_today_data,
     lowest_price_ever_data,
+)
+
+sendInfoExternal.call(
+    product_name_shortened,
+    lowest_price_today_formatted,
+    lowest_price_today_seller_name,
+    lowest_price_ever_formatted,
+    lowest_price_ever_date_formatted,
+    lowest_price_ever_seller_name,
 )
